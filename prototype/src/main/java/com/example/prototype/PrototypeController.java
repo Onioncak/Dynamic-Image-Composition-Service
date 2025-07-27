@@ -4,12 +4,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-
-
-
-
-
-
 @RestController
 public class PrototypeController {
 
@@ -25,6 +19,16 @@ public class PrototypeController {
     public ImageResponse imageResponse(@RequestBody ImageRequest request) {
         
         try {
+
+            if(request.getWatermark() != null) {
+                System.out.println("Watermark Source: " + request.getWatermark().getSource());
+            }
+            if(request.getOverlay() != null) {
+                System.out.println("Overlay Source: " + request.getOverlay().getSource());
+            }
+            if(request.getOutput() != null) {
+                System.out.println("Output Format: " + request.getOutput().isCreateThumbnail());
+            }
 
             String base64Image = imageService.fetchAndEncodeImage(request.getBaseImage());
             System.out.println("Get Base64 Image: " + request.getBaseImage());

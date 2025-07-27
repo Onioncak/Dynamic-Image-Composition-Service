@@ -24,7 +24,10 @@ public class ImageService {
             byte[] imageBytes = baos.toByteArray();
 
             return "data:image/jpeg;base64," + Base64.getEncoder().encodeToString(imageBytes);
-        }
+        }catch (Exception e){
+                throw new RuntimeException("Bild konnte nicht geladen werden: " + e.getMessage());
+
+            }
     }
     
 }
